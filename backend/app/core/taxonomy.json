@@ -1,0 +1,779 @@
+{
+  "knowledge_categories": {
+    "AI": [
+      "ai",
+      "artificial intelligence",
+      "llm",
+      "llms",
+      "gpt",
+      "generative",
+      "agents",
+      "prompt"
+    ],
+    "Machine Learning": [
+      "machine learning",
+      "ml",
+      "model",
+      "models",
+      "training",
+      "neural",
+      "classifier",
+      "regression",
+      "deep learning"
+    ],
+    "Data Science": [
+      "data science",
+      "data",
+      "analytics",
+      "pandas",
+      "sql",
+      "statistics",
+      "visualization",
+      "dataset"
+    ],
+    "Backend Development": [
+      "backend",
+      "api",
+      "apis",
+      "fastapi",
+      "django",
+      "server",
+      "database",
+      "rest",
+      "endpoint"
+    ],
+    "Frontend Development": [
+      "frontend",
+      "react",
+      "css",
+      "ui",
+      "ux",
+      "next.js",
+      "tailwind",
+      "component",
+      "components"
+    ],
+    "Software Engineering": [
+      "software",
+      "engineering",
+      "testing",
+      "tests",
+      "code",
+      "architecture",
+      "refactor",
+      "debugging",
+      "design patterns"
+    ],
+    "DevOps": [
+      "devops",
+      "ci/cd",
+      "docker",
+      "kubernetes",
+      "pipeline",
+      "pipelines",
+      "deploy",
+      "deployment",
+      "monitoring"
+    ],
+    "Cloud": [
+      "cloud",
+      "aws",
+      "azure",
+      "gcp",
+      "serverless",
+      "cloud computing"
+    ],
+    "Cybersecurity": [
+      "security",
+      "cybersecurity",
+      "vulnerability",
+      "encryption",
+      "phishing",
+      "threat",
+      "pentest"
+    ],
+    "Web Development": [
+      "web",
+      "website",
+      "webapp",
+      "javascript",
+      "html",
+      "web development"
+    ],
+    "Career": [
+      "career",
+      "job",
+      "hiring",
+      "resume",
+      "interview",
+      "promotion",
+      "offer",
+      "role"
+    ],
+    "Internship": [
+      "internship",
+      "intern",
+      "interns"
+    ],
+    "Student": [
+      "student",
+      "students",
+      "college",
+      "university",
+      "semester",
+      "course",
+      "exam",
+      "coursework"
+    ],
+    "Leadership": [
+      "leadership",
+      "team lead",
+      "mentor",
+      "mentoring",
+      "managing",
+      "manager",
+      "lead"
+    ],
+    "Entrepreneurship": [
+      "startup",
+      "founder",
+      "entrepreneur",
+      "business",
+      "product launch",
+      "venture"
+    ]
+  },
+  "post_types": [
+    "achievement",
+    "certification",
+    "project",
+    "internship",
+    "job",
+    "learning",
+    "career_update",
+    "hackathon",
+    "conference",
+    "milestone",
+    "failure_lesson",
+    "personal_story",
+    "technical_insight",
+    "thank_you",
+    "announcement"
+  ],
+  "post_type_lexicon": {
+    "certification": [
+      "certified",
+      "certification",
+      "certificate",
+      "credential",
+      "badge"
+    ],
+    "internship": [
+      "internship",
+      "intern at",
+      "interning"
+    ],
+    "hackathon": [
+      "hackathon",
+      "hack day",
+      "datathon"
+    ],
+    "conference": [
+      "conference",
+      "meetup",
+      "summit",
+      "talk at",
+      "spoke at"
+    ],
+    "job": [
+      "joined",
+      "new role",
+      "started my role",
+      "new job",
+      "offer letter",
+      "hired"
+    ],
+    "career_update": [
+      "promoted",
+      "promotion",
+      "career update",
+      "switching careers",
+      "transition"
+    ],
+    "project": [
+      "project",
+      "built",
+      "shipped",
+      "prototype",
+      "open source",
+      "demo"
+    ],
+    "learning": [
+      "learned",
+      "course",
+      "studying",
+      "studied",
+      "tutorial",
+      "workshop",
+      "reading"
+    ],
+    "milestone": [
+      "milestone",
+      "100 days",
+      "first ",
+      "years of",
+      "anniversary"
+    ],
+    "failure_lesson": [
+      "failed",
+      "mistake",
+      "lesson",
+      "setback",
+      "didn't work",
+      "rejected"
+    ],
+    "thank_you": [
+      "thank you",
+      "thanks to",
+      "grateful to",
+      "shout out"
+    ],
+    "announcement": [
+      "announce",
+      "announcing",
+      "launch",
+      "launched",
+      "release"
+    ],
+    "technical_insight": [
+      "how to",
+      "tip",
+      "here's how",
+      "technique",
+      "debugging tip",
+      "best practice"
+    ],
+    "achievement": [
+      "completed",
+      "finished",
+      "won",
+      "achieved",
+      "passed",
+      "accomplished"
+    ]
+  },
+  "tones": [
+    "professional",
+    "excited",
+    "proud",
+    "humble",
+    "reflective",
+    "motivational",
+    "grateful",
+    "educational",
+    "conversational",
+    "confident"
+  ],
+  "tone_lexicon": {
+    "professional": [
+      "professional",
+      "industry",
+      "stakeholders",
+      "outcome",
+      "strategy",
+      "results"
+    ],
+    "excited": [
+      "excited",
+      "thrilled",
+      "can't wait",
+      "amazing",
+      "love",
+      "awesome"
+    ],
+    "proud": [
+      "proud",
+      "accomplished",
+      "milestone",
+      "achievement",
+      "hard work"
+    ],
+    "humble": [
+      "humbled",
+      "learning",
+      "still learning",
+      "not an expert",
+      "beginner",
+      "grateful for"
+    ],
+    "reflective": [
+      "looking back",
+      "reflect",
+      "reflection",
+      "realized",
+      "realize",
+      "journey"
+    ],
+    "motivational": [
+      "keep going",
+      "you can",
+      "never give up",
+      "believe",
+      "push",
+      "momentum"
+    ],
+    "grateful": [
+      "grateful",
+      "thankful",
+      "thank you",
+      "appreciate",
+      "gratitude"
+    ],
+    "educational": [
+      "learn",
+      "lesson",
+      "how to",
+      "step",
+      "tip",
+      "explain",
+      "takeaway"
+    ],
+    "conversational": [
+      "i",
+      "we",
+      "you",
+      "let's",
+      "honestly",
+      "so",
+      "btw"
+    ],
+    "confident": [
+      "confident",
+      "ready",
+      "will",
+      "proven",
+      "committed",
+      "determined"
+    ]
+  },
+  "emotions": [
+    "happy",
+    "proud",
+    "grateful",
+    "excited",
+    "calm",
+    "thoughtful",
+    "hopeful",
+    "neutral"
+  ],
+  "emotion_lexicon": {
+    "happy": [
+      "happy",
+      "glad",
+      "joy",
+      "delighted",
+      "smile"
+    ],
+    "proud": [
+      "proud",
+      "pride",
+      "accomplished"
+    ],
+    "grateful": [
+      "grateful",
+      "thankful",
+      "appreciate"
+    ],
+    "excited": [
+      "excited",
+      "thrilled",
+      "can't wait",
+      "amazing"
+    ],
+    "calm": [
+      "calm",
+      "peaceful",
+      "steady",
+      "relaxed"
+    ],
+    "thoughtful": [
+      "thoughtful",
+      "reflect",
+      "wonder",
+      "think about"
+    ],
+    "hopeful": [
+      "hope",
+      "hopeful",
+      "optimistic",
+      "looking forward"
+    ]
+  },
+  "audiences": [
+    "students",
+    "developers",
+    "professionals",
+    "recruiters",
+    "founders",
+    "general audience"
+  ],
+  "length_options": [
+    "short",
+    "medium",
+    "long"
+  ],
+  "cta_types": [
+    "question",
+    "invite_comments",
+    "share",
+    "follow",
+    "none"
+  ],
+  "cta_patterns": {
+    "question": "\\?\\s*$",
+    "invite_comments": "(comment|comments|let me know|tell me|share your|drop your|your thoughts)",
+    "share": "(repost|share this|pass it on|share with)",
+    "follow": "(follow me|follow for|follow along|connect with me)"
+  },
+  "cta_instructions": {
+    "question": "End with one open, specific question for readers.",
+    "invite_comments": "End by inviting readers to share their own experience in the comments.",
+    "share": "End by suggesting readers share the post with someone who could benefit.",
+    "follow": "End with a light, non-pushy invitation to follow for more on the topic.",
+    "none": "Do not include a call to action."
+  },
+  "hook_patterns": {
+    "achievement": "^(proud|excited|happy|thrilled|finally|just (finished|completed|launched|shipped|passed))",
+    "question": "^(have you|did you|do you|what if|ever wondered|why do|how do|is it)|\\?$",
+    "story": "^(last|a few|when i|back in|it started|one day|this (week|month|year))",
+    "lesson": "^(lesson|here('|’)?s what|here is what|what i learned|mistake|i was wrong|the hard way)",
+    "milestone": "(milestone|\\d+\\s*(days|weeks|months|years)|first (day|week|month|year|version|release))",
+    "curiosity": "^(most people|nobody|here's why|you won't believe|unpopular opinion|the surprising)",
+    "transformation": "^(from .+ to |i used to|now i|before .+ after)"
+  },
+  "hook_templates": {
+    "achievement": [
+      "Proud to share a milestone: {event_lower}.",
+      "Just wrapped up something I'm proud of: {event_lower}."
+    ],
+    "question": [
+      "What would you do differently if you were starting {topic} today?",
+      "Have you ever worked on {topic} from scratch?"
+    ],
+    "story": [
+      "It started with a simple goal around {topic}.",
+      "This one began as a small experiment with {topic}."
+    ],
+    "lesson": [
+      "One lesson I want to keep from my work on {topic}.",
+      "What I learned from {topic}, in plain terms."
+    ],
+    "milestone": [
+      "Milestone unlocked: {event_lower}.",
+      "A checkpoint worth sharing: {event_lower}."
+    ],
+    "curiosity": [
+      "Most people only see the result of {topic}. Here is the process behind it.",
+      "The part of {topic} nobody talks about: the process."
+    ],
+    "transformation": [
+      "From idea to finished work: {event_lower}.",
+      "How {topic} went from an idea to something real."
+    ]
+  },
+  "structure_roles": {
+    "achievement": [
+      "achieved",
+      "completed",
+      "finished",
+      "launched",
+      "built",
+      "shipped",
+      "won",
+      "certified",
+      "passed"
+    ],
+    "context": [
+      "when i",
+      "started",
+      "back in",
+      "project",
+      "working on",
+      "focus",
+      "goal"
+    ],
+    "learning": [
+      "learned",
+      "lesson",
+      "takeaway",
+      "realized",
+      "discovered",
+      "understood",
+      "key idea"
+    ],
+    "reflection": [
+      "looking back",
+      "reflect",
+      "grateful",
+      "proud",
+      "journey",
+      "i think"
+    ],
+    "problem": [
+      "problem",
+      "challenge",
+      "struggled",
+      "difficult",
+      "stuck"
+    ],
+    "solution": [
+      "solution",
+      "fixed",
+      "approach",
+      "solved",
+      "approached",
+      "decided to"
+    ],
+    "result": [
+      "result",
+      "outcome",
+      "impact",
+      "now i",
+      "ended up"
+    ]
+  },
+  "structures": {
+    "short": [
+      "hook",
+      "achievement",
+      "learning",
+      "cta"
+    ],
+    "medium": [
+      "hook",
+      "context",
+      "achievement",
+      "learning",
+      "cta"
+    ],
+    "long": [
+      "hook",
+      "context",
+      "problem",
+      "solution",
+      "result",
+      "learning",
+      "cta"
+    ]
+  },
+  "category_to_structure_hint": {
+    "achievement": [
+      "hook",
+      "context",
+      "achievement",
+      "learning",
+      "cta"
+    ],
+    "failure_lesson": [
+      "hook",
+      "problem",
+      "solution",
+      "learning",
+      "cta"
+    ],
+    "technical_insight": [
+      "hook",
+      "context",
+      "learning",
+      "cta"
+    ]
+  },
+  "stopwords": [
+    "a",
+    "about",
+    "above",
+    "after",
+    "again",
+    "against",
+    "all",
+    "along",
+    "also",
+    "am",
+    "an",
+    "and",
+    "any",
+    "are",
+    "as",
+    "at",
+    "be",
+    "because",
+    "been",
+    "before",
+    "being",
+    "below",
+    "between",
+    "both",
+    "but",
+    "by",
+    "can",
+    "could",
+    "day",
+    "days",
+    "did",
+    "do",
+    "does",
+    "doing",
+    "down",
+    "during",
+    "each",
+    "few",
+    "for",
+    "from",
+    "further",
+    "get",
+    "got",
+    "had",
+    "has",
+    "have",
+    "having",
+    "he",
+    "her",
+    "here",
+    "hers",
+    "him",
+    "his",
+    "how",
+    "i",
+    "if",
+    "in",
+    "into",
+    "is",
+    "it",
+    "its",
+    "just",
+    "like",
+    "linkedin",
+    "lot",
+    "made",
+    "make",
+    "me",
+    "months",
+    "more",
+    "most",
+    "my",
+    "no",
+    "nor",
+    "not",
+    "now",
+    "of",
+    "off",
+    "on",
+    "once",
+    "one",
+    "only",
+    "or",
+    "other",
+    "our",
+    "out",
+    "over",
+    "own",
+    "post",
+    "really",
+    "same",
+    "she",
+    "should",
+    "so",
+    "some",
+    "such",
+    "than",
+    "that",
+    "the",
+    "their",
+    "them",
+    "then",
+    "there",
+    "these",
+    "they",
+    "thing",
+    "things",
+    "this",
+    "those",
+    "through",
+    "time",
+    "times",
+    "to",
+    "today",
+    "too",
+    "two",
+    "under",
+    "until",
+    "up",
+    "very",
+    "was",
+    "way",
+    "ways",
+    "we",
+    "week",
+    "weeks",
+    "were",
+    "what",
+    "when",
+    "where",
+    "which",
+    "while",
+    "who",
+    "why",
+    "will",
+    "with",
+    "would",
+    "years",
+    "you",
+    "your",
+    "yours"
+  ],
+  "generic_openers": [
+    "excited to share",
+    "happy to share",
+    "pleased to announce",
+    "thrilled to announce",
+    "i am excited to",
+    "i'm excited to",
+    "i am happy to",
+    "i'm happy to"
+  ],
+  "spam_phrases": [
+    "guaranteed",
+    "go viral",
+    "100% guaranteed",
+    "dm me for",
+    "click the link",
+    "limited time",
+    "make money fast",
+    "buy now",
+    "act now",
+    "get rich",
+    "guaranteed reach"
+  ],
+  "leakage_terms": [
+    "retrieved",
+    "retrieval",
+    "knowledge base",
+    "content intelligence",
+    "rag",
+    "vector",
+    "embedding",
+    "system prompt"
+  ],
+  "suggestion_messages": {
+    "weak_hook": "Open with a specific detail or question in the first line so readers stop scrolling.",
+    "generic_opener": "Replace the generic opener (for example 'Excited to share') with the concrete outcome.",
+    "missing_cta": "Close with one clear call to action, such as a specific question.",
+    "missing_keywords": "Weave in terms your audience searches for, such as: {keywords}.",
+    "too_long": "Trim filler sentences; aim for a tighter structure.",
+    "too_short": "Add one concrete detail about what you did and what it taught you.",
+    "low_readability": "Shorten long sentences and prefer plain words.",
+    "excess_hashtags": "Keep 3 to 5 relevant hashtags instead of a long list.",
+    "no_structure": "Add a clear progression: hook, context, achievement, lesson, call to action.",
+    "no_specifics": "Include one specific number, tool, or step to make the post credible."
+  }
+}

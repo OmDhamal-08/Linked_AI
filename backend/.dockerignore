@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+*.db
+*.sqlite
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+evaluation/report*.json
