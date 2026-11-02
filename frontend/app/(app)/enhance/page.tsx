@@ -85,7 +85,7 @@ export default function EnhancePage() {
                       <p className="mb-2 text-sm font-semibold text-ink-900">Hook ideas</p>
                       <ul className="flex flex-col gap-2">
                         {result.hook_suggestions.map((h) => (
-                          <li key={h} className="rounded-lg border border-ink-100 px-3 py-2 text-sm text-ink-800">
+                          <li key={h} className="rounded-md border border-ink-100 px-3 py-2 text-sm text-ink-800">
                             {h}
                           </li>
                         ))}
@@ -124,7 +124,7 @@ export default function EnhancePage() {
                 <div className="mt-6 text-left">
                   <ScoreCard
                     score={{
-                      label: "AI content quality score (not a prediction of LinkedIn reach)",
+                      label: "Quality score",
                       relevance: 0,
                       readability: 0,
                       hook_strength: 0,

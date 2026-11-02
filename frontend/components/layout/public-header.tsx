@@ -1,29 +1,27 @@
 import Link from "next/link";
-import { Sparkles } from "lucide-react";
 import { APP_NAME } from "@/lib/config";
+
+const LINKS = [
+  { href: "/pricing", label: "Pricing" },
+  { href: "/about", label: "About" },
+  { href: "/login", label: "Log in" },
+];
 
 export function PublicHeader() {
   return (
-    <header className="sticky top-0 z-10 border-b border-ink-100 bg-white/85 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white">
-            <Sparkles className="h-4 w-4" aria-hidden="true" />
-          </span>
-          <span className="font-semibold text-ink-900">{APP_NAME}</span>
+    <header className="border-b border-ink-200 bg-white">
+      <div className="mx-auto flex h-14 max-w-4xl items-center justify-between px-4 sm:px-6">
+        <Link href="/" className="font-semibold text-ink-900">
+          {APP_NAME}
         </Link>
-        <nav aria-label="Public" className="flex items-center gap-1 text-sm">
-          <Link href="/pricing" className="rounded-md px-3 py-2 text-ink-600 hover:bg-ink-100 hover:text-ink-900">
-            Pricing
-          </Link>
-          <Link href="/about" className="rounded-md px-3 py-2 text-ink-600 hover:bg-ink-100 hover:text-ink-900">
-            About
-          </Link>
-          <Link href="/login" className="rounded-md px-3 py-2 text-ink-600 hover:bg-ink-100 hover:text-ink-900">
-            Log in
-          </Link>
-          <Link href="/signup" className="ml-1 rounded-lg bg-brand-600 px-4 py-2 font-medium text-white hover:bg-brand-700">
-            Get started
+        <nav aria-label="Public" className="flex items-center gap-5 text-sm">
+          {LINKS.map(({ href, label }) => (
+            <Link key={href} href={href} className={`text-ink-600 hover:text-ink-900 ${href === "/login" ? "" : "hidden sm:inline"}`}>
+              {label}
+            </Link>
+          ))}
+          <Link href="/signup" className="rounded-md bg-brand-600 px-3 py-1.5 font-medium text-white hover:bg-brand-700">
+            Sign up
           </Link>
         </nav>
       </div>

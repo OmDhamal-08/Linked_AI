@@ -99,7 +99,7 @@ export default function HistoryDetailPage() {
               <CardContent className="flex flex-col gap-6">
                 <UpgradeBanner />
                 <p className="text-sm text-ink-700">Original input:</p>
-                <p className="prose-post rounded-lg bg-ink-50/60 p-4 text-sm">{post.input_text}</p>
+                <p className="prose-post rounded-md bg-ink-50/60 p-4 text-sm">{post.input_text}</p>
                 <BlueprintView
                   blueprint={{ structure: post.analysis?.structure ?? [], hook_suggestions: [], cta: "question", keywords: post.keywords_used, hashtags: post.hashtags }}
                   suggestions={post.suggestions}

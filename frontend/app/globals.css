@@ -7,7 +7,7 @@
     -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply bg-ink-50;
+    @apply bg-white;
   }
   :focus-visible {
     outline: none;
@@ -15,6 +15,12 @@
 }
 
 @layer components {
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
   .prose-post {
     @apply whitespace-pre-line text-[15px] leading-7 text-ink-800;
   }

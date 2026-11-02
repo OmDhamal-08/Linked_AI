@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { BarChart3, FileText, Gauge, Sparkles } from "lucide-react";
 import { UsageMeter } from "@/components/dashboard/usage-meter";
 import { StatCard } from "@/components/dashboard/stat-card";
 import { Button } from "@/components/ui/button";
@@ -58,15 +57,11 @@ export default function DashboardPage() {
     <div className="flex flex-col gap-8">
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-ink-900">Welcome back, {firstName}</h1>
-          <p className="mt-1 text-sm text-ink-600">Pick up where you left off, or start something new.</p>
-        </div>
+          <h1 className="text-2xl font-semibold text-ink-900">Hi, {firstName}</h1>
+                  </div>
         <div className="flex gap-2">
           <Link href="/generate">
-            <Button>
-              <Sparkles className="h-4 w-4" aria-hidden="true" />
-              Generate post
-            </Button>
+            <Button>Generate post</Button>
           </Link>
           <Link href="/enhance">
             <Button variant="secondary">Enhance post</Button>
@@ -77,19 +72,17 @@ export default function DashboardPage() {
       {error ? <Alert tone="danger">{error}</Alert> : null}
 
       <section aria-label="Quick statistics" className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard label="Posts generated" value={stats?.generated ?? "–"} icon={<FileText className="h-4 w-4" aria-hidden="true" />} />
-        <StatCard label="Posts enhanced" value={stats?.enhanced ?? "–"} icon={<Sparkles className="h-4 w-4" aria-hidden="true" />} />
+        <StatCard label="Posts generated" value={stats?.generated ?? "–"} />
+        <StatCard label="Posts enhanced" value={stats?.enhanced ?? "–"} />
         <StatCard
           label="Average quality score"
           value={stats?.averageScore ?? "–"}
-          hint="AI content quality (not reach)"
-          icon={<Gauge className="h-4 w-4" aria-hidden="true" />}
+          hint="Out of 100"
         />
         <StatCard
           label="Current plan"
           value={<span className="capitalize">{subscription?.plan ?? user?.plan ?? "free"}</span>}
           hint={subscription?.plan === "premium" ? "Full posts unlocked" : "Upgrade for full posts"}
-          icon={<BarChart3 className="h-4 w-4" aria-hidden="true" />}
         />
       </section>
 

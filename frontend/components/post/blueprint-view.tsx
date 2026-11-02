@@ -12,7 +12,7 @@ export function BlueprintView({ blueprint, suggestions }: { blueprint: Blueprint
         </h3>
         <ul className="flex flex-col gap-2">
           {blueprint.hook_suggestions.map((hook) => (
-            <li key={hook} className="rounded-lg border border-ink-100 bg-white px-4 py-3 text-sm text-ink-800">
+            <li key={hook} className="rounded-md border border-ink-100 bg-white px-4 py-3 text-sm text-ink-800">
               {hook}
             </li>
           ))}
@@ -66,7 +66,7 @@ export function BlueprintView({ blueprint, suggestions }: { blueprint: Blueprint
           </h3>
           <ul className="flex flex-col gap-2">
             {suggestions.map((s) => (
-              <li key={s.code} className="rounded-lg bg-ink-50 px-3 py-2 text-sm text-ink-700">
+              <li key={s.code} className="rounded-md bg-ink-50 px-3 py-2 text-sm text-ink-700">
                 {s.message}
               </li>
             ))}

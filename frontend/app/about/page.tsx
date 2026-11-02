@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PublicHeader } from "@/components/layout/public-header";
+import { APP_NAME } from "@/lib/config";
 
 export const metadata: Metadata = { title: "About" };
 
@@ -7,25 +8,22 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
       <PublicHeader />
-      <main id="main" className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-        <h1 className="text-3xl font-semibold text-ink-900">About Linkdine AI</h1>
-        <div className="prose-like mt-6 flex flex-col gap-5 text-ink-700 leading-7">
+      <main id="main" className="mx-auto max-w-2xl px-4 py-12 sm:px-6">
+        <h1 className="text-2xl font-semibold text-ink-900">About</h1>
+        <div className="mt-6 flex flex-col gap-4 leading-7 text-ink-700">
           <p>
-            Linkdine AI helps professionals and students share their work clearly. You describe an achievement or paste a draft, and
-            we suggest a structure, an opening line, relevant terms and a call to action. You stay in control of every fact.
+            {APP_NAME} is a small tool for writing LinkedIn posts about things you&apos;ve actually done. You give it the facts, it
+            suggests a structure, an opening line, relevant keywords and a closing question. You edit the result.
           </p>
-          <h2 className="pt-4 text-xl font-semibold text-ink-900">What we optimise for</h2>
-          <p>Relevance to your topic, clarity, readability, a strong opening line, natural keywords, a meaningful call to action and a tone that fits your audience.</p>
-          <h2 className="pt-4 text-xl font-semibold text-ink-900">What we do not do</h2>
           <p>
-            We do not guarantee viral reach or engagement, and no keyword is promised to boost visibility. We do not scrape LinkedIn and we do not
-            copy posts. The knowledge base stores derived patterns and embeddings, not third-party text.
+            Before writing, it looks up similar examples in a knowledge base and uses their patterns (how they open, how they&apos;re
+            structured, which terms they use) as guidance. It stores those patterns, not the original posts.
           </p>
-          <h2 className="pt-4 text-xl font-semibold text-ink-900">Your data</h2>
           <p>
-            Your posts belong to you. You can edit, copy or delete them at any time from your history. Personal details such as email addresses
-            are removed from any dataset before it is used.
+            It won&apos;t add achievements, numbers or companies you didn&apos;t mention. The score you see is a rough measure of
+            readability and structure, not a prediction of how many people will see the post.
           </p>
+          <p>Your posts are yours: you can edit or delete any of them from your history.</p>
         </div>
       </main>
     </div>

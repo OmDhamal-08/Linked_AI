@@ -4,7 +4,7 @@ import { PublicHeader } from "@/components/layout/public-header";
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen bg-ink-50">
+    <div className="min-h-screen bg-white">
       <PublicHeader />
       <main id="main" className="mx-auto flex max-w-md flex-col px-4 py-16 sm:px-6">
         <h1 className="text-2xl font-semibold text-ink-900">Welcome back</h1>

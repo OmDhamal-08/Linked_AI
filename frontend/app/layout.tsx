@@ -9,11 +9,11 @@ export const metadata: Metadata = {
     default: APP_NAME,
     template: `%s · ${APP_NAME}`,
   },
-  description: "AI-powered LinkedIn content optimization. Generate and improve posts with relevance, clarity and structure.",
+  description: "Write and improve LinkedIn posts.",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0e8475",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
 };

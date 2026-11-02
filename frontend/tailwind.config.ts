@@ -1,44 +1,35 @@
 import type { Config } from "tailwindcss";
 
-/**
- * Design tokens. Brand colours live here so the look can be re-skinned in one place.
- */
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./hooks/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
+        // muted blue accent, used sparingly (primary button, links, active nav)
         brand: {
-          50: "#ecfdfb",
-          100: "#d2f7f1",
-          200: "#a6ede2",
-          300: "#6fdccb",
-          400: "#33c4ae",
-          500: "#14a390",
-          600: "#0e8475",
-          700: "#0d6960",
-          800: "#0f544e",
-          900: "#0e4642",
+          50: "#f1f5f9",
+          100: "#e2e8f0",
+          200: "#cbd5e1",
+          300: "#94a3b8",
+          400: "#64748b",
+          500: "#3b5b7d",
+          600: "#2c4a6b",
+          700: "#233c57",
+          800: "#1c3047",
+          900: "#142336",
         },
         ink: {
-          50: "#f6f8f9",
-          100: "#eceff1",
-          200: "#d6dde1",
-          300: "#b3bfc6",
-          400: "#8294a0",
-          500: "#5f7480",
-          600: "#4a5c66",
-          700: "#374650",
-          800: "#22303a",
-          900: "#131d24",
+          50: "#fafafa",
+          100: "#f4f4f5",
+          200: "#e4e4e7",
+          300: "#d4d4d8",
+          400: "#a1a1aa",
+          500: "#71717a",
+          600: "#52525b",
+          700: "#3f3f46",
+          800: "#27272a",
+          900: "#18181b",
         },
-        amberish: {
-          100: "#fdf1d6",
-          500: "#c98a0b",
-        },
-      },
-      boxShadow: {
-        card: "0 1px 2px rgba(19, 29, 36, 0.05), 0 4px 16px rgba(19, 29, 36, 0.04)",
       },
       fontFamily: {
         sans: ["ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],

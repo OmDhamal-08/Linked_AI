@@ -13,7 +13,7 @@ const tones: Record<Tone, string> = {
 
 export function Badge({ tone = "neutral", className, ...props }: HTMLAttributes<HTMLSpanElement> & { tone?: Tone }) {
   return (
-    <span className={cn("inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium", tones[tone], className)} {...props} />
+    <span className={cn("inline-flex items-center rounded px-2 py-0.5 text-xs font-medium", tones[tone], className)} {...props} />
   );
 }
 
@@ -23,7 +23,7 @@ export function Alert({ tone = "neutral", title, children }: { tone?: Tone; titl
   return (
     <div
       role={isError ? "alert" : "status"}
-      className={cn("rounded-lg px-4 py-3 text-sm", tones[tone])}
+      className={cn("rounded-md px-4 py-3 text-sm", tones[tone])}
     >
       {title ? <p className="font-semibold">{title}</p> : null}
       {children ? <div className={cn(title && "mt-1")}>{children}</div> : null}
@@ -43,7 +43,7 @@ export function Spinner({ className }: { className?: string }) {
 
 export function EmptyState({ title, description, action }: { title: string; description?: string; action?: ReactNode }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-ink-200 bg-white px-6 py-10 text-center">
+    <div className="flex flex-col items-center justify-center gap-2 rounded-md border border-dashed border-ink-200 bg-white px-6 py-10 text-center">
       <p className="text-sm font-semibold text-ink-800">{title}</p>
       {description ? <p className="max-w-sm text-sm text-ink-500">{description}</p> : null}
       {action ? <div className="mt-2">{action}</div> : null}

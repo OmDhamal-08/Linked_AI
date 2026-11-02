@@ -45,7 +45,7 @@ export function TagInput({ label, value, onChange, max = 10, hint, error, placeh
       <label htmlFor={id} className="text-sm font-medium text-ink-800">
         {label}
       </label>
-      <div className="flex min-h-10 flex-wrap items-center gap-1.5 rounded-lg border border-ink-200 bg-white px-2 py-1.5 focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-500/30">
+      <div className="flex min-h-10 flex-wrap items-center gap-1.5 rounded-md border border-ink-200 bg-white px-2 py-1.5 focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-500/30">
         {value.map((term) => (
           <Badge key={term} tone="brand" className="gap-1 pr-1">
             {term}

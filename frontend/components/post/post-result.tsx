@@ -152,7 +152,7 @@ export function PostResult({
                 id="post-editor"
                 value={draft}
                 onChange={(e) => setDraft(e.target.value)}
-                className="min-h-[260px] w-full rounded-lg border border-ink-200 p-4 text-[15px] leading-7 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30"
+                className="min-h-[260px] w-full rounded-md border border-ink-200 p-4 text-[15px] leading-7 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30"
               />
               <div className="flex gap-2">
                 <Button onClick={saveEdits} loading={saving}>
@@ -165,7 +165,7 @@ export function PostResult({
               </div>
             </div>
           ) : (
-            <article aria-label="Post text" className="prose-post rounded-lg bg-ink-50/60 p-5">
+            <article aria-label="Post text" className="prose-post rounded-md bg-ink-50/60 p-5">
               {body}
             </article>
           )}

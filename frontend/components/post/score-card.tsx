@@ -18,8 +18,8 @@ function barColor(value: number): string {
   return "bg-red-400";
 }
 
-/** Shows the AI content quality score. It is NOT a prediction of LinkedIn reach; the label says so. */
-export function ScoreCard({ score, title = "AI content quality score" }: { score: QualityScore; title?: string }) {
+/** Writing quality score (hook, keywords, readability, structure). Not a reach prediction. */
+export function ScoreCard({ score, title = "Quality score" }: { score: QualityScore; title?: string }) {
   return (
     <section aria-labelledby="score-title" className="flex flex-col gap-4">
       <div>

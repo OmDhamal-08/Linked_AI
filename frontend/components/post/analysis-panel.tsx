@@ -64,7 +64,7 @@ export function AnalysisPanel({ analysis, suggestions, hookStrength, missingKeyw
           <p className="mb-2 text-sm font-semibold text-ink-900">Suggestions</p>
           <ul className="flex flex-col gap-2">
             {suggestions.map((s) => (
-              <li key={s.code} className="rounded-lg bg-ink-50 px-3 py-2 text-sm text-ink-700">
+              <li key={s.code} className="rounded-md bg-ink-50 px-3 py-2 text-sm text-ink-700">
                 {s.message}
               </li>
             ))}

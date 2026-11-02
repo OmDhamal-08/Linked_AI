@@ -23,7 +23,7 @@ export default function PricingPage() {
   const plans = usePlans();
 
   return (
-    <div className="min-h-screen bg-ink-50">
+    <div className="min-h-screen bg-white">
       <PublicHeader />
       <main id="main" className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
         <div className="text-center">
@@ -38,7 +38,7 @@ export default function PricingPage() {
         ) : null}
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
-          <section aria-labelledby="free-plan" className="flex flex-col rounded-xl border border-ink-200 bg-white p-8 shadow-card">
+          <section aria-labelledby="free-plan" className="flex flex-col rounded-md border border-ink-200 bg-white p-8">
             <h2 id="free-plan" className="text-lg font-semibold text-ink-900">
               Free
             </h2>
@@ -60,7 +60,7 @@ export default function PricingPage() {
             </Link>
           </section>
 
-          <section aria-labelledby="premium-plan" className="flex flex-col rounded-xl border-2 border-brand-500 bg-white p-8 shadow-card">
+          <section aria-labelledby="premium-plan" className="flex flex-col rounded-md border-ink-900 bg-white p-8">
             <h2 id="premium-plan" className="text-lg font-semibold text-ink-900">
               Premium
             </h2>

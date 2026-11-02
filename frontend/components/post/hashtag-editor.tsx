@@ -59,7 +59,7 @@ export function HashtagEditor({ value, onChange, max = 5 }: Props) {
         onKeyDown={onKeyDown}
         onBlur={() => draft && add(draft)}
         placeholder={value.length >= max ? `Maximum ${max} hashtags` : "Add a hashtag and press Enter"}
-        className="h-9 w-full rounded-lg border border-ink-200 px-3 text-sm placeholder:text-ink-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 disabled:bg-ink-50"
+        className="h-9 w-full rounded-md border border-ink-200 px-3 text-sm placeholder:text-ink-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30 disabled:bg-ink-50"
       />
     </div>
   );

@@ -38,7 +38,7 @@ export function IngestionUpload({ onDone }: { onDone?: () => void }) {
 
   return (
     <form onSubmit={submit} className="flex flex-col gap-4" aria-label="Upload a knowledge dataset">
-      <label className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-ink-300 bg-white px-6 py-8 text-center hover:border-brand-400">
+      <label className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-md border border-dashed border-ink-300 bg-white px-6 py-8 text-center hover:border-brand-400">
         <Upload className="h-5 w-5 text-ink-500" aria-hidden="true" />
         <span className="text-sm font-medium text-ink-800">{file ? file.name : "Choose a CSV or JSON file"}</span>
         <span className="text-xs text-ink-500">Requires a text column. Other metadata is generated when missing.</span>
