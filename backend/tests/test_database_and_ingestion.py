@@ -26,7 +26,7 @@ GOOD_TEXT = (
 
 def test_post_and_analysis_are_saved_and_cascade_deleted():
     with get_session_factory()() as session:
-        user = User(email="db-ops@linkdine-test.com", plan="free", auth_provider="local")
+        user = User(email="db-ops@linkdine-test.com", plan="free")
         session.add(user)
         session.commit()
 
@@ -45,9 +45,9 @@ def test_post_and_analysis_are_saved_and_cascade_deleted():
 
 def test_duplicate_email_violates_unique_constraint():
     with get_session_factory()() as session:
-        session.add(User(email="unique@linkdine-test.com", plan="free", auth_provider="local"))
+        session.add(User(email="unique@linkdine-test.com", plan="free"))
         session.commit()
-        session.add(User(email="unique@linkdine-test.com", plan="free", auth_provider="local"))
+        session.add(User(email="unique@linkdine-test.com", plan="free"))
         with pytest.raises(IntegrityError):
             session.commit()
         session.rollback()

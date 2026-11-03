@@ -1,6 +1,6 @@
 """In-memory sliding-window rate limiter.
 
-Good enough for a single-instance MVP. For multiple instances, swap this
+Fine while the API runs as a single process. With several instances, swap this
 class for a Redis-backed implementation with the same `hit` interface.
 """
 

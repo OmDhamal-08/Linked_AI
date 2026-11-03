@@ -42,7 +42,6 @@ def main() -> int:
                     name="Demo User",
                     plan="free",
                     password_hash=hash_password(settings.demo_user_password),
-                    auth_provider="local",
                 )
             )
             session.commit()

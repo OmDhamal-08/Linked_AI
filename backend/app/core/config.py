@@ -23,7 +23,6 @@ class Settings(BaseSettings):
 
     # General
     app_name: str = "Linkdine AI"
-    app_subtitle: str = "AI-Powered LinkedIn Content Intelligence, Generation & Optimization Platform"
     environment: str = "development"
     debug: bool = False
     log_level: str = "INFO"
@@ -38,14 +37,9 @@ class Settings(BaseSettings):
     cors_origins: str = "http://localhost:3000"
 
     # Auth
-    auth_provider: str = "local"  # local | supabase
     jwt_secret: str = "dev-only-change-me-to-a-long-random-string-32chars"
     jwt_algorithm: str = "HS256"
     jwt_expire_minutes: int = 60 * 24 * 7
-    supabase_url: str = ""
-    supabase_anon_key: str = ""
-    supabase_service_role_key: str = ""
-    supabase_jwt_secret: str = ""
     admin_emails: str = ""
 
     # AI generation
@@ -76,7 +70,6 @@ class Settings(BaseSettings):
     free_full_post_enabled: bool = False
     premium_max_variations: int = 3
     allow_mock_payments: bool = True
-    payment_provider: str = "mock"
 
     # RAG
     rag_top_k: int = 5
@@ -96,14 +89,12 @@ class Settings(BaseSettings):
     # Ingestion
     ingestion_pii_action: str = "redact"  # redact | reject
     ingestion_max_rows: int = 5000
-    ingestion_use_llm: bool = False
-    post_validation_use_llm: bool = False
 
     # Demo seeding (development only)
     demo_user_email: str = "demo@linkdine.dev"
     demo_user_password: str = "DemoPassword123!"
 
-    @field_validator("ai_provider", "embedding_provider", "auth_provider", "vector_store")
+    @field_validator("ai_provider", "embedding_provider", "vector_store")
     @classmethod
     def _lower(cls, value: str) -> str:
         return value.strip().lower()

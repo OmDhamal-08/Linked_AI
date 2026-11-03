@@ -168,32 +168,3 @@ class PromptBuilder:
             max_tokens=400,
             temperature=0.2,
         )
-
-    def build_validate(self, *, post: str, user_facts: str) -> AIRequest:
-        values = {"post": sanitize_untrusted(post), "user_facts": sanitize_untrusted(user_facts)}
-        return AIRequest(
-            system_prompt=self.system_prompt,
-            user_prompt=render(load_template("validate_post.txt"), values),
-            task="validate",
-            variables={},
-            max_tokens=300,
-            temperature=0.0,
-        )
-
-    def build_extract(self, *, text: str) -> AIRequest:
-        t = self._taxonomy
-        values = {
-            "text": sanitize_untrusted(text),
-            "categories": list(t["knowledge_categories"].keys()),
-            "tones": t["tones"],
-            "hook_types": list(t["hook_patterns"].keys()) + ["statement"],
-            "cta_types": t["cta_types"],
-        }
-        return AIRequest(
-            system_prompt=self.system_prompt,
-            user_prompt=render(load_template("extract_intelligence.txt"), values),
-            task="extract",
-            variables={},
-            max_tokens=500,
-            temperature=0.0,
-        )

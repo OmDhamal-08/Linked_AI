@@ -1,10 +1,10 @@
-from datetime import datetime
 """Knowledge base models.
 
-IMPORTANT: knowledge_items stores DERIVED content intelligence and an embedding,
-never the full third-party source text. Only the content hash is kept for dedupe.
+knowledge_items stores derived metadata (topic, hook type, structure, keywords...)
+and an embedding. The original post text is not stored; only its hash, for dedupe.
 """
 
+from datetime import datetime
 from typing import Any
 
 from sqlalchemy import JSON, Boolean, DateTime, Integer, String

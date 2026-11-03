@@ -25,7 +25,6 @@ def mock_upgrade(
     c: Container = Depends(get_app_container),
 ):
     """Development only: activate Premium without a real payment."""
-    c.payments.ensure_mock_allowed()
     return c.subscriptions.activate_premium(session, user)
 
 

@@ -34,7 +34,6 @@ services:
       EMBEDDING_DIM: ${EMBEDDING_DIM:-384}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
       JWT_SECRET: ${JWT_SECRET:-dev-only-change-me-to-a-long-random-string-32chars}
-      AUTH_PROVIDER: ${AUTH_PROVIDER:-local}
       AI_PROVIDER: ${AI_PROVIDER:-mock}
       AI_API_KEY: ${AI_API_KEY:-}
       AI_MODEL: ${AI_MODEL:-mock-linkdine-v1}

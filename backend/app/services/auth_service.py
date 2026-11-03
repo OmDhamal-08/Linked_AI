@@ -1,8 +1,7 @@
-"""Authentication service with a swappable provider.
+"""Email/password authentication.
 
-- local (default): email + PBKDF2 password hashing, backend-issued JWTs.
-- supabase: verifies Supabase-issued JWTs. Sign-up and sign-in happen in the
-  Supabase client on the frontend; the backend only verifies and syncs users.
+Passwords are hashed with PBKDF2 (see core/security.py) and the API issues a
+signed JWT on signup/login. Every protected route decodes that token to find the user.
 """
 
 import re
@@ -12,7 +11,7 @@ import jwt
 from sqlalchemy.orm import Session
 
 from app.core.config import Settings
-from app.core.errors import ForbiddenError, InvalidRequestError, NotFoundError, UnauthorizedError
+from app.core.errors import InvalidRequestError, NotFoundError, UnauthorizedError
 from app.core.security import create_access_token, decode_token, hash_password, verify_password
 from app.models.user import User
 from app.repositories.user_repository import UserRepository
@@ -25,11 +24,7 @@ class AuthService:
         self._settings = settings
         self._users = users
 
-    # ---- local provider -------------------------------------------------
-
     def signup(self, session: Session, *, email: str, password: str, name: str | None) -> dict[str, Any]:
-        if self._settings.auth_provider != "local":
-            raise ForbiddenError("Sign-up is handled by the configured identity provider.")
         email = self._normalise_email(email)
         if len(password) < 8:
             raise InvalidRequestError("Password must be at least 8 characters.")
@@ -40,14 +35,11 @@ class AuthService:
             email=email,
             name=name,
             password_hash=hash_password(password),
-            auth_provider="local",
             is_admin=email in self._settings.admin_email_list,
         )
         return self._issue(user)
 
     def login(self, session: Session, *, email: str, password: str) -> dict[str, Any]:
-        if self._settings.auth_provider != "local":
-            raise ForbiddenError("Sign-in is handled by the configured identity provider.")
         email = self._normalise_email(email)
         user = self._users.get_by_email(session, email)
         # Same error for unknown email and wrong password, to avoid account enumeration.
@@ -64,38 +56,8 @@ class AuthService:
         )
         return {"access_token": token, "token_type": "bearer", "user_id": user.id}
 
-    # ---- token verification (both providers) ------------------------------
-
     def user_from_token(self, session: Session, token: str) -> User:
         try:
-            if self._settings.auth_provider == "supabase":
-                claims = decode_token(
-                    token,
-                    secret=self._settings.supabase_jwt_secret,
-                    algorithm="HS256",
-                    audience="authenticated",
-                )
-                email = (claims.get("email") or "").lower()
-                user = self._users.get_by_external_id(session, claims["sub"])
-                if not user and email:
-                    user = self._users.get_by_email(session, email)
-                    if user:
-                        user.external_auth_id = claims["sub"]
-                        user.auth_provider = "supabase"
-                        session.add(user)
-                if not user:
-                    if not email:
-                        raise UnauthorizedError()
-                    user = self._users.create(
-                        session,
-                        email=email,
-                        name=(claims.get("user_metadata") or {}).get("name"),
-                        password_hash=None,
-                        auth_provider="supabase",
-                        external_auth_id=claims["sub"],
-                        is_admin=email in self._settings.admin_email_list,
-                    )
-                return user
             claims = decode_token(token, secret=self._settings.jwt_secret, algorithm=self._settings.jwt_algorithm)
         except jwt.PyJWTError as exc:
             raise UnauthorizedError("Your session has expired. Please log in again.") from exc
@@ -104,8 +66,6 @@ class AuthService:
         if not user:
             raise UnauthorizedError("Your session is no longer valid. Please log in again.")
         return user
-
-    # ---- profile ----------------------------------------------------------
 
     def update_profile(self, session: Session, user: User, *, name: str | None, avatar_url: str | None) -> User:
         if name is not None:

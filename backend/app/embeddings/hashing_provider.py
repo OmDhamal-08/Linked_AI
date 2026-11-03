@@ -2,7 +2,7 @@
 
 It is deterministic and needs no API key, so development and tests always work.
 Quality is lexical rather than semantic: swap in the OpenAI provider for
-production-grade semantic search.
+real semantic search.
 """
 
 import hashlib

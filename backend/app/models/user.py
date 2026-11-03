@@ -1,5 +1,5 @@
-from datetime import datetime
 import uuid
+from datetime import datetime
 
 from sqlalchemy import Boolean, DateTime, String
 from sqlalchemy.orm import Mapped, mapped_column
@@ -22,8 +22,6 @@ class User(Base):
     avatar_url: Mapped[str | None] = mapped_column(String(500), nullable=True)
     plan: Mapped[str] = mapped_column(String(20), default="free", nullable=False)
     password_hash: Mapped[str | None] = mapped_column(String(300), nullable=True)
-    auth_provider: Mapped[str] = mapped_column(String(30), default="local", nullable=False)
-    external_auth_id: Mapped[str | None] = mapped_column(String(64), unique=True, nullable=True)
     is_admin: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     created_at: Mapped[datetime] = timestamp_column()
     updated_at: Mapped[datetime] = timestamp_column(onupdate=utcnow)

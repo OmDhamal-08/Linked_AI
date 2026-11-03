@@ -7,10 +7,8 @@ Only derived metadata and the embedding are stored. The source text is discarded
 after embedding, so third-party wording is never kept in the knowledge base.
 """
 
-import json
 import logging
 from collections import Counter
-from collections.abc import Callable
 from typing import Any
 
 from sqlalchemy.orm import Session
@@ -39,8 +37,6 @@ from app.services.embedding_service import EmbeddingService
 logger = get_logger(__name__)
 FALLBACK_CATEGORY = "Career"
 
-Enricher = Callable[[str], dict[str, Any]]
-
 
 class IngestionPipeline:
     def __init__(
@@ -49,12 +45,10 @@ class IngestionPipeline:
         embeddings: EmbeddingService,
         repo: KnowledgeRepository,
         settings: Settings,
-        enricher: Enricher | None = None,
     ) -> None:
         self._embeddings = embeddings
         self._repo = repo
         self._settings = settings
-        self._enricher = enricher if settings.ingestion_use_llm else None
 
     def run(self, session: Session, rows: list[dict[str, Any]], *, source_type: str, source_reference: str) -> dict[str, Any]:
         counts: Counter[str] = Counter()
@@ -134,7 +128,7 @@ class IngestionPipeline:
         emotion = detect_emotion(text)
 
         hook_pattern = f"{hook_type}_{structure[1]}" if len(structure) > 1 else hook_type
-        metadata: dict[str, Any] = {
+        return {
             "category": category,
             "topic": topic[:200],
             "keywords": keywords,
@@ -147,28 +141,3 @@ class IngestionPipeline:
             "hashtag_concepts": tags[:5],
             "audience": audience[:120],
         }
-        if self._enricher and (not record.get("category") or not record.get("keywords")):
-            metadata = self._enrich(text, metadata)
-        return metadata
-
-    def _enrich(self, text: str, metadata: dict[str, Any]) -> dict[str, Any]:
-        try:
-            extra = self._enricher(text) if self._enricher else {}
-        except Exception as exc:  # noqa: BLE001 - enrichment is optional; never fail ingestion for it
-            log_event(logger, logging.WARNING, "ingestion_enrichment_failed", error=type(exc).__name__)
-            return metadata
-        for key in ("category", "topic", "tone", "hook_type", "cta_type", "audience"):
-            if extra.get(key) and not metadata.get(key):
-                metadata[key] = str(extra[key])[:200]
-        if isinstance(extra.get("keywords"), list):
-            merged = list(dict.fromkeys(metadata["keywords"] + [str(k).lower() for k in extra["keywords"]]))
-            metadata["keywords"] = merged[:10]
-        return metadata
-
-
-def parse_enricher_json(raw: str) -> dict[str, Any]:
-    try:
-        value = json.loads(raw)
-        return value if isinstance(value, dict) else {}
-    except json.JSONDecodeError:
-        return {}

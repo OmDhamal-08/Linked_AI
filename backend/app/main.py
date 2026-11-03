@@ -46,7 +46,7 @@ def create_app() -> FastAPI:
     settings = get_settings()
     application = FastAPI(
         title=settings.app_name,
-        description=settings.app_subtitle,
+        description="Generate and improve LinkedIn posts using retrieval-augmented generation.",
         version="0.1.0",
         lifespan=lifespan,
         docs_url="/docs" if not settings.is_production else None,

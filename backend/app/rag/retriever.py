@@ -4,7 +4,7 @@ Pipeline:
 1. Vector search with metadata filters (over-fetch K * multiplier candidates).
 2. If too few candidates, relax the filters and merge (never return nothing when data exists).
 3. Re-score each candidate with weighted vector, keyword, and metadata signals.
-4. Rerank (pluggable) and keep the top K.
+4. Sort by the combined score and keep the top K.
 """
 
 from dataclasses import dataclass, field
@@ -15,7 +15,6 @@ from sqlalchemy.orm import Session
 from app.core.config import Settings
 from app.models.knowledge import KnowledgeItem
 from app.rag.query_builder import AnalyzedQuery
-from app.rag.reranker import NoopReranker, Reranker
 from app.rag.vector_store import Candidate, VectorStore
 from app.services.embedding_service import EmbeddingService
 
@@ -70,12 +69,10 @@ class Retriever:
         vector_store: VectorStore,
         embedding_service: EmbeddingService,
         settings: Settings,
-        reranker: Reranker | None = None,
     ) -> None:
         self._store = vector_store
         self._embeddings = embedding_service
         self._settings = settings
-        self._reranker = reranker or NoopReranker()
 
     def retrieve(self, session: Session, query: AnalyzedQuery, *, top_k: int | None = None) -> RetrievalResult:
         k = top_k or self._settings.rag_top_k
@@ -108,7 +105,7 @@ class Retriever:
             final = w_v * vector_component + w_k * kw + w_m * meta
             scored.append(_item_view(item, final, c.vector_score))
 
-        ranked = self._reranker.rerank(query.semantic_query, scored)[:k]
+        ranked = sorted(scored, key=lambda c: c["score"], reverse=True)[:k]
         return RetrievalResult(
             items=ranked,
             filters_used={kk: vv for kk, vv in strict_filters.items() if vv},

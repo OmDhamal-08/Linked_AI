@@ -2,7 +2,9 @@ import pytest
 
 from app.core.errors import ForbiddenError
 from app.db.session import get_session_factory
-from app.services.payment_service import MockPaymentProvider, PaymentService
+from app.core.config import Settings
+from app.repositories.subscription_repository import SubscriptionRepository
+from app.services.subscription_service import SubscriptionService
 from tests.conftest import ENHANCE_TEXT, generate_payload
 
 
@@ -97,13 +99,13 @@ def test_mock_upgrade_then_cancel(client):
 
 
 def test_mock_payments_are_blocked_in_production():
-    service = PaymentService(MockPaymentProvider(), allow_mock=True, is_production=True)
+    service = SubscriptionService(SubscriptionRepository(), Settings(environment="production", allow_mock_payments=True))
     with pytest.raises(ForbiddenError):
         service.ensure_mock_allowed()
 
 
 def test_mock_payments_can_be_disabled_outside_production():
-    service = PaymentService(MockPaymentProvider(), allow_mock=False, is_production=False)
+    service = SubscriptionService(SubscriptionRepository(), Settings(environment="development", allow_mock_payments=False))
     with pytest.raises(ForbiddenError):
         service.ensure_mock_allowed()
 

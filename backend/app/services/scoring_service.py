@@ -1,7 +1,7 @@
-"""AI content quality score (0-100 per dimension).
+"""Quality score for a post: 0-100 on eight dimensions plus a weighted overall.
 
-IMPORTANT: this is a heuristic quality signal for the generated text. It is NOT a
-prediction of LinkedIn reach, and the UI must label it that way.
+These are rule-based checks on the text itself (readability, hook, keywords...).
+They say nothing about how many people will see the post.
 """
 
 from typing import Any
@@ -19,7 +19,7 @@ WEIGHTS = {
     "cta_quality": 0.10,
     "originality_signals": 0.05,
 }
-LABEL = "AI content quality score (not a prediction of LinkedIn reach)"
+LABEL = "Quality score (not a prediction of LinkedIn reach)"
 
 
 def _clamp(value: float) -> float:

@@ -11,7 +11,6 @@ from app.core.config import Settings
 from app.core.taxonomy import get_taxonomy
 from app.nlp.analysis import tokenize, word_count
 
-SEVERE = {"empty_output", "leakage", "spam_language"}
 PREAMBLE_RE = re.compile(r"^\s*(here('?s| is)|sure[,!]|certainly[,!]|of course[,!]).*:\s*$", re.IGNORECASE)
 NUMBER_RE = re.compile(r"(?<![\w.])\d+(?:[.,]\d+)?%?")
 

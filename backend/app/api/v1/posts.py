@@ -18,7 +18,7 @@ def generate_post(
     c: Container = Depends(get_app_container),
 ):
     """Create a post from structured input (RAG + LLM, plan-gated)."""
-    return c.posts.generate(session, user, body)
+    return c.generation.generate(session, user, body)
 
 
 @router.post("/enhance", dependencies=[Depends(rate_limit("enhance"))])
@@ -29,7 +29,7 @@ def enhance_post(
     c: Container = Depends(get_app_container),
 ):
     """Analyse and improve an existing post."""
-    return c.posts.enhance(session, user, body)
+    return c.generation.enhance(session, user, body)
 
 
 @router.post("/analyze", dependencies=[Depends(rate_limit("analyze"))])
@@ -40,7 +40,7 @@ def analyze_post(
     c: Container = Depends(get_app_container),
 ):
     """Deterministic analysis of a post (free). Advanced LLM review is Premium."""
-    return c.posts.analyze(session, user, body)
+    return c.generation.analyze(session, user, body)
 
 
 @router.get("")

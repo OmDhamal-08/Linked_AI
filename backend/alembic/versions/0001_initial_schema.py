@@ -42,13 +42,10 @@ def upgrade() -> None:
         sa.Column("avatar_url", sa.String(500), nullable=True),
         sa.Column("plan", sa.String(20), nullable=False, server_default="free"),
         sa.Column("password_hash", sa.String(300), nullable=True),
-        sa.Column("auth_provider", sa.String(30), nullable=False, server_default="local"),
-        sa.Column("external_auth_id", sa.String(64), nullable=True),
         sa.Column("is_admin", sa.Boolean(), nullable=False, server_default=sa.false()),
         sa.Column("created_at", sa.DateTime(timezone=True), nullable=False),
         sa.Column("updated_at", sa.DateTime(timezone=True), nullable=False),
         sa.UniqueConstraint("email", name="uq_users_email"),
-        sa.UniqueConstraint("external_auth_id", name="uq_users_external_auth_id"),
     )
     op.create_index("ix_users_email", "users", ["email"])
 

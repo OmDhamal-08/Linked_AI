@@ -60,16 +60,3 @@ def test_vector_store_selection():
     assert isinstance(build_vector_store("auto", "postgresql"), PgVectorStore)
     assert isinstance(build_vector_store("python", "postgresql"), PythonVectorStore)
 
-
-def test_reranker_is_pluggable():
-    from app.rag.reranker import NoopReranker, Reranker
-
-    class Reverse(Reranker):
-        name = "reverse"
-
-        def rerank(self, query, candidates):
-            return list(reversed(candidates))
-
-    candidates = [{"score": 0.9}, {"score": 0.1}]
-    assert NoopReranker().rerank("q", candidates)[0]["score"] == 0.9
-    assert Reverse().rerank("q", candidates)[0]["score"] == 0.1

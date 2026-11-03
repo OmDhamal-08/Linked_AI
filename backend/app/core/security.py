@@ -50,10 +50,6 @@ def create_access_token(subject: str, *, secret: str, algorithm: str, expires_mi
     return jwt.encode(payload, secret, algorithm=algorithm)
 
 
-def decode_token(token: str, *, secret: str, algorithm: str, audience: str | None = None) -> dict[str, Any]:
+def decode_token(token: str, *, secret: str, algorithm: str) -> dict[str, Any]:
     """Raises jwt.PyJWTError on invalid or expired tokens."""
-    options = {"require": ["exp", "sub"]}
-    kwargs: dict[str, Any] = {"algorithms": [algorithm], "options": options}
-    if audience:
-        kwargs["audience"] = audience
-    return jwt.decode(token, secret, **kwargs)
+    return jwt.decode(token, secret, algorithms=[algorithm], options={"require": ["exp", "sub"]})

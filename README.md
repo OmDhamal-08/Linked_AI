@@ -28,7 +28,7 @@ with auth, usage limits and an admin panel around it.
 | Backend | FastAPI, Pydantic v2, SQLAlchemy 2, Alembic |
 | Database | PostgreSQL + pgvector (SQLite works for local dev) |
 | AI | OpenAI / Anthropic behind one interface, plus a mock provider for offline dev |
-| Testing | pytest (95 tests), Vitest + Testing Library (23 tests) |
+| Testing | pytest (94 tests), Vitest + Testing Library (23 tests) |
 
 ## How it works
 
@@ -69,8 +69,8 @@ A few decisions worth mentioning:
 backend/
   app/
     api/v1/        routes: auth, users, posts, usage, subscriptions, admin, meta, health
-    services/      business logic (posts, RAG, scoring, validation, usage, plans)
-    rag/           query analyzer, vector store, retriever, reranker
+    services/      business logic: generation, post history, RAG, scoring, validation, usage, plans
+    rag/           query analyzer, vector store, hybrid retriever, content patterns
     ai/            LLM providers
     embeddings/    embedding providers
     ingestion/     loader, validator, cleaner, PII redaction, pipeline

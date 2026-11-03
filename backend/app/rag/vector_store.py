@@ -3,15 +3,16 @@
 VectorStore is the only interface the rest of the app uses. Two implementations:
 - PgVectorStore: PostgreSQL + pgvector, cosine distance computed in SQL (production).
 - PythonVectorStore: JSON embeddings on any database, cosine computed in Python (dev/tests).
-Swap providers later (e.g. Pinecone) by writing another subclass.
+Another backend (e.g. Pinecone) would be one more subclass with the same search method.
 """
 
+import logging
 import math
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from typing import Any
 
-from sqlalchemy import and_, select, text, update
+from sqlalchemy import and_, select, text
 from sqlalchemy.orm import Session
 
 from app.core.errors import VectorStoreError
@@ -49,15 +50,6 @@ class VectorStore(ABC):
     name: str = "base"
 
     @abstractmethod
-    def add_embedding(self, session: Session, item: KnowledgeItem, vector: list[float]) -> None: ...
-
-    @abstractmethod
-    def update_embedding(self, session: Session, item_id: str, vector: list[float]) -> None: ...
-
-    @abstractmethod
-    def delete_embedding(self, session: Session, item_id: str) -> None: ...
-
-    @abstractmethod
     def search_similar(
         self, session: Session, query_vector: list[float], *, k: int, filters: dict[str, Any] | None = None
     ) -> list[Candidate]: ...
@@ -65,16 +57,6 @@ class VectorStore(ABC):
 
 class PythonVectorStore(VectorStore):
     name = "python"
-
-    def add_embedding(self, session: Session, item: KnowledgeItem, vector: list[float]) -> None:
-        item.embedding = vector
-        session.add(item)
-
-    def update_embedding(self, session: Session, item_id: str, vector: list[float]) -> None:
-        session.execute(update(KnowledgeItem).where(KnowledgeItem.id == item_id).values(embedding=vector))
-
-    def delete_embedding(self, session: Session, item_id: str) -> None:
-        session.execute(update(KnowledgeItem).where(KnowledgeItem.id == item_id).values(embedding=None, is_active=False))
 
     def search_similar(
         self, session: Session, query_vector: list[float], *, k: int, filters: dict[str, Any] | None = None
@@ -87,7 +69,7 @@ class PythonVectorStore(VectorStore):
                 if i.embedding
             ]
         except Exception as exc:  # noqa: BLE001
-            log_event(logger, 40, "vector_search_failed", store=self.name, error=type(exc).__name__)
+            log_event(logger, logging.ERROR, "vector_search_failed", store=self.name, error=type(exc).__name__)
             raise VectorStoreError() from exc
         scored.sort(key=lambda c: c.vector_score, reverse=True)
         return scored[:k]
@@ -101,16 +83,6 @@ class PgVectorStore(VectorStore):
     @staticmethod
     def _literal(vector: list[float]) -> str:
         return "[" + ",".join(f"{float(x):.8f}" for x in vector) + "]"
-
-    def add_embedding(self, session: Session, item: KnowledgeItem, vector: list[float]) -> None:
-        item.embedding = vector
-        session.add(item)
-
-    def update_embedding(self, session: Session, item_id: str, vector: list[float]) -> None:
-        session.execute(update(KnowledgeItem).where(KnowledgeItem.id == item_id).values(embedding=vector))
-
-    def delete_embedding(self, session: Session, item_id: str) -> None:
-        session.execute(update(KnowledgeItem).where(KnowledgeItem.id == item_id).values(embedding=None, is_active=False))
 
     def search_similar(
         self, session: Session, query_vector: list[float], *, k: int, filters: dict[str, Any] | None = None
@@ -138,7 +110,7 @@ class PgVectorStore(VectorStore):
             ids = [r.id for r in rows]
             items = {i.id: i for i in session.scalars(select(KnowledgeItem).where(KnowledgeItem.id.in_(ids)))}
         except Exception as exc:  # noqa: BLE001
-            log_event(logger, 40, "vector_search_failed", store=self.name, error=type(exc).__name__)
+            log_event(logger, logging.ERROR, "vector_search_failed", store=self.name, error=type(exc).__name__)
             raise VectorStoreError() from exc
         return [Candidate(item=items[r.id], vector_score=float(r.score)) for r in rows if r.id in items]
 
